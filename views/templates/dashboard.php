@@ -25,7 +25,7 @@
                     <td><?= $article['title'] ?></td>
                     <td><?= $article['views']?></td>
                     <td><?= $article['comments_count']?></td>
-                    <td><a class="submit" href="index?action=showComments&id=<?=$article['id']?>">Commentaires</a></td>
+                    <td><a class="submit" href="index.php?action=showComments&id=<?=$article['id']?>&title=<?= $article['title']?>">Commentaires</a></td>
                     <td><?= ucfirst(Utils::convertDateToFrenchFormat(new DateTime($article['date_creation'])))?></td>
                 </tr>
             <?php } ?>    

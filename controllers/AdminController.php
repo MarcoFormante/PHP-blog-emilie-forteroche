@@ -59,12 +59,14 @@ class AdminController {
         // On récupère les commentaires.
         $commentManager = new CommentManager();
         $id = Utils::request('id',-1);
+        $title = Utils::request("title");
         $comments = $commentManager->getAllCommentsByArticleId($id);
 
         // On affiche la page des commentaires.
         $view = new View("Commentaires");
         $view->render("manage_comments", [
-            'comments' => $comments
+            'comments' => $comments,
+            'title' => $title
         ]);
     }
 
