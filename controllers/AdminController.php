@@ -25,6 +25,52 @@ class AdminController {
         ]);
     }
 
+
+    /**
+     * Affiche la page Tableau de bord.
+     * @return void
+     */
+    public function showDashboard() : void
+    {
+        // On vérifie que l'utilisateur est connecté.
+        $this->checkIfUserIsConnected();
+
+        // On récupère les articles.
+        $articleManager = new ArticleManager();
+        $articles = $articleManager->getAllDashboardArticles();
+
+        // On affiche la page d'administration.
+        $view = new View("Tableau de bord");
+        $view->render("dashboard", [
+            'articles' => $articles
+        ]);
+    }
+
+
+    /**
+     * Affiche la page Tableau de bord.
+     * @return void
+     */
+    public function showComments() : void
+    {
+        // On vérifie que l'utilisateur est connecté.
+        $this->checkIfUserIsConnected();
+
+        // On récupère les commentaires.
+        $commentManager = new CommentManager();
+        $id = Utils::request('id',-1);
+        $comments = $commentManager->getAllCommentsByArticleId($id);
+
+        // On affiche la page des commentaires.
+        $view = new View("Commentaires");
+        $view->render("manage_comments", [
+            'comments' => $comments
+        ]);
+    }
+
+
+    
+
     /**
      * Vérifie que l'utilisateur est connecté.
      * @return void
