@@ -350,3 +350,22 @@ footer {
     color: white;
     background-color: var(--headerColor);
 }
+
+
+.admin-table table {
+    border-collapse: collapse;
+}
+
+.admin-table table td {
+    border: 1px solid black;
+    text-align: center;
+    min-width: 200px;
+    padding: 15px;
+}
+
+
+.admin-table table tbody {
+    background-color: var(--commentPaleColor);
+    color: white;
+}
+
