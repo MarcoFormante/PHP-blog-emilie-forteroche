@@ -1,8 +1,16 @@
 <?php 
     /** 
-     * Affichage de la page Tableau de bord : liste des articles avec titre, nombre de vues, nombre de commentaire, 
+     * Affichage de la page Tableau de bord : liste des articles avec titre, nombre de vues, nombre de commentaires, 
      * et un bouton pour acceder aux commentaires.
      */
+
+    $tableHeadings = 
+    [
+        "title" => "Titre",
+        "views" => "Views",
+        "comments_count" => "Nombre de <br/> commentaire",
+        "date_creation" => "Date Creation"
+    ];
 ?>
 
 
@@ -12,11 +20,38 @@
     <table>
         <thead >
             <tr>
-                <th>Titre</th>
-                <th>Vues</th>
-                <th>Nombre de commentaires</th>
+                <?php foreach($tableHeadings as $name => $heading) { ?>
+                    <th>
+                        <div class="admin-table-col-heading">
+                            <span><?= $heading ?></span>
+                            <a  
+                                class="filter-arrow <?=($orderBy === $name ? "filter-arrow__on" :"") ?> <?php 
+                                    if($orderBy === $name &&  $orderValue === "DESC"){
+                                        echo "arrow-down";
+                                    }elseif($orderBy === $name &&  $orderValue === "ASC"){
+                                        echo "arrow-up";
+                                    }else{
+                                        echo "arrow";
+                                    }
+                                    ?>
+                                " 
+                                href="index.php?action=dashboard&orderBy=<?= $name ?>&orderValue=<?php 
+                                if($orderBy === $name &&  $orderValue === "DESC"){
+                                        echo "ASC";
+                                    }elseif($orderBy === $name &&  $orderValue === "ASC"){
+                                        echo "DESC";
+                                    }else{
+                                        echo "ASC";
+                                    }
+                                    ?>
+                                "
+                            >
+                                >
+                            </a>
+                        </div>
+                    </th> 
+                <?php } ?>
                 <th>Commentaires</th>
-                <th>Date Creation</th>
             </tr>
         </thead>
         <tbody>
@@ -25,8 +60,8 @@
                     <td><?= $article['title'] ?></td>
                     <td><?= $article['views']?></td>
                     <td><?= $article['comments_count']?></td>
-                    <td><a class="submit" href="index.php?action=showComments&id=<?=$article['id']?>&title=<?= $article['title']?>">Commentaires</a></td>
                     <td><?= ucfirst(Utils::convertDateToFrenchFormat(new DateTime($article['date_creation'])))?></td>
+                    <td><a class="submit" href="index.php?action=showComments&id=<?=$article['id']?>&title=<?= $article['title']?>">Commentaires</a></td>
                 </tr>
             <?php } ?>    
             
