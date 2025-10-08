@@ -27,7 +27,7 @@ class AdminController {
 
 
     /**
-     * Affiche la page Tableau de bord.
+     * Affiche la page Tableau de bord avec les articles.
      * @return void
      */
     public function showDashboard() : void
@@ -35,20 +35,26 @@ class AdminController {
         // On vérifie que l'utilisateur est connecté.
         $this->checkIfUserIsConnected();
 
+        
+        $orderBy = Utils::request("orderBy","id");
+        $orderValue = Utils::request("orderValue","ASC");
+        
         // On récupère les articles.
         $articleManager = new ArticleManager();
-        $articles = $articleManager->getAllDashboardArticles();
+        $articles = $articleManager->getAllDashboardArticles($orderBy,$orderValue);
 
-        // On affiche la page d'administration.
+        // On affiche la page dashboard.
         $view = new View("Tableau de bord");
         $view->render("dashboard", [
-            'articles' => $articles
+            'articles' => $articles,
+            'orderBy' => $orderBy,
+            'orderValue' => $orderValue
         ]);
     }
 
 
     /**
-     * Affiche la page Tableau de bord.
+     * Affiche la page des commentaires.
      * @return void
      */
     public function showComments() : void
