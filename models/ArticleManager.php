@@ -102,6 +102,7 @@ class ArticleManager extends AbstractEntityManager
             'content' => $article->getContent()
         ]);
     }
+    
 
     /**
      * Modifie un article.
@@ -127,5 +128,20 @@ class ArticleManager extends AbstractEntityManager
     {
         $sql = "DELETE FROM article WHERE id = :id";
         $this->db->query($sql, ['id' => $id]);
+    }
+
+
+     /**
+     * Mise à jour des vues de l'article
+     * @param Article $article : l'article à modifier.
+     * @return void
+     */
+    public function updateViews(Article $article) : void
+    {
+        $sql = "UPDATE article SET views = :views WHERE id = :id";
+        $this->db->query($sql, [
+            'views' => $article->getViews(),
+            'id' => $article->getId()
+        ]);
     }
 }
