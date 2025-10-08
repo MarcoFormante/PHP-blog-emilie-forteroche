@@ -31,8 +31,8 @@ class ArticleManager extends AbstractEntityManager
         
         $sql = "SELECT a.id, a.title, a.date_creation, views, COUNT(c.id) as comments_count
                 FROM article a 
-                JOIN comment c ON c.id_article = a.id
-                GROUP BY c.id_article 
+                LEFT JOIN comment c ON c.id_article = a.id
+                GROUP BY a.id
                 ORDER BY $orderBy $orderValue";
                 
                 
