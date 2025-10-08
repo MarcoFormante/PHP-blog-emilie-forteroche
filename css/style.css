@@ -369,3 +369,42 @@ footer {
     color: white;
 }
 
+.admin-table-col-heading{
+    display: flex;
+    justify-content: center;
+    gap: 20%;
+    align-items: center;
+}
+
+
+.filter-arrow{
+    display: inline-block; 
+    border: 1px solid black;
+    padding: 2px 2px;
+    height: 30px;
+    width: 30px;
+    display: grid;
+    place-items: center;
+    font-size: 1.2rem;
+    transform: rotate( 0deg);
+    
+    &.arrow{
+        opacity: 0.3;
+    }
+}
+
+
+.filter-arrow__on{
+    background-color: var(--titleColor);
+    color: white;
+}
+
+
+.filter-arrow.arrow-up{
+    transform: rotate(-90deg);
+}
+
+
+.filter-arrow.arrow-down{
+    transform: rotate(90deg);
+}
