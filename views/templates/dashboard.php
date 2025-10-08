@@ -7,7 +7,7 @@
     $tableHeadings = 
     [
         "title" => "Titre",
-        "views" => "Views",
+        "views" => "Vues",
         "comments_count" => "Nombre de <br/> commentaire",
         "date_creation" => "Date Creation"
     ];
