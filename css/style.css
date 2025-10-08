@@ -408,3 +408,34 @@ footer {
 .filter-arrow.arrow-down{
     transform: rotate(90deg);
 }
+
+
+.comment{
+    border: 1px solid black;
+    padding: 15px;
+    width: 100%;
+    list-style: none;
+}
+
+.comment .delete{
+    color: var(--titleColor);
+    float: right;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border: 1px solid black;
+    display: block;
+    border-radius: 4px;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+}
+
+.deleteAll-text{
+    text-align: right;
+    margin: 40px 0 20px 0;
+    color: var(--titleColor);
+    text-decoration: underline;
+    font-weight: 600;
+}
