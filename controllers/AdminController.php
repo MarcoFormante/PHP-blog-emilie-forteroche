@@ -77,6 +77,26 @@ class AdminController {
     }
 
 
+    /**
+     * Supprime un commentaire et fait redirect sur la page des commentaires.
+     * @return void
+     */
+    public function deleteComment() : void
+    {
+        // On vérifie que l'utilisateur est connecté.
+        $this->checkIfUserIsConnected();
+
+        $commentManager = new CommentManager();
+        $commentId = Utils::request('commentId',-1);
+        $comment = new Comment(['id' => $commentId]);
+        if(!$commentManager->deleteComment($comment)){
+            throw new Exception("Erreur pendant la suppression du commentaire");  
+        }
+
+        $this->showComments();
+    }
+
+
     
 
     /**
