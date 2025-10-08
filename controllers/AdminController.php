@@ -78,7 +78,7 @@ class AdminController {
 
 
     /**
-     * Supprime un commentaire et fait redirect sur la page des commentaires.
+     * Supprime un commentaire et affiche la page des commentaires.
      * @return void
      */
     public function deleteComment() : void
@@ -87,13 +87,38 @@ class AdminController {
         $this->checkIfUserIsConnected();
 
         $commentManager = new CommentManager();
+
         $commentId = Utils::request('commentId',-1);
         $comment = new Comment(['id' => $commentId]);
-        if(!$commentManager->deleteComment($comment)){
+        $deleteCommentResult = $commentManager->deleteComment($comment);
+        
+        if(!$deleteCommentResult){
             throw new Exception("Erreur pendant la suppression du commentaire");  
         }
-
+       
         $this->showComments();
+    }
+
+    
+   /**
+     * Supprime les commentaires et affiche sur la page tableau de bord.
+     * @return void
+     */
+    public function deleteAllArticleComments() : void
+    {
+        // On vérifie que l'utilisateur est connecté.
+        $this->checkIfUserIsConnected();
+
+        $commentManager = new CommentManager();
+
+        $idArticle = Utils::request("id",-1);
+        $deleteAllResult = $commentManager->deleteAllComments($idArticle);
+
+        if (!$deleteAllResult) {
+              throw new Exception("Erreur pendant la suppression des commentaires");  
+        }
+       
+        Utils::redirect("dashboard");
     }
 
 
