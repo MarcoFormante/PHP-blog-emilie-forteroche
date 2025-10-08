@@ -47,7 +47,22 @@ try {
         case 'dashboard': 
             $adminController = new AdminController();
             $adminController->showDashboard();
-            break;  
+            break; 
+
+        case 'showComments': 
+            $adminController = new AdminController();
+            $adminController->showComments();
+            break;
+
+        case 'deleteComment': 
+            $adminController = new AdminController();
+            $adminController->deleteComment();
+            break; 
+
+        case 'deleteAllComments': 
+            $adminController = new AdminController();
+            $adminController->deleteAllArticleComments();
+            break; 
             
         case 'connectionForm':
             $adminController = new AdminController();
