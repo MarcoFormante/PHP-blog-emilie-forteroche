@@ -26,12 +26,15 @@ class ArticleManager extends AbstractEntityManager
      * Récupère tous les articles pour la page dashboard avec les nombre vues et commentaires.
      * @return array : un tableau avec id,title,views,date_creation et comments_count de chaque article.
      */
-    public function getAllDashboardArticles() : array
+    public function getAllDashboardArticles(string|null $orderBy = null,string|null $orderValue = null) : array
     {
+        
         $sql = "SELECT a.id, a.title, a.date_creation, views, COUNT(c.id) as comments_count
                 FROM article a 
-                JOIN comment c ON c.id_article = a.id 
-                GROUP BY c.id_article";
+                JOIN comment c ON c.id_article = a.id
+                GROUP BY c.id_article 
+                ORDER BY $orderBy $orderValue";
+                
                 
         $result = $this->db->query($sql);
 
