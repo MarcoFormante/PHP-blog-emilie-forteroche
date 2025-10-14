@@ -439,3 +439,7 @@ footer {
     text-decoration: underline;
     font-weight: 600;
 }
+
+tr.darken{
+    background-color: #777c31;
+}
