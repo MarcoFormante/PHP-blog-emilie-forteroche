@@ -55,8 +55,8 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($articles as $article) { ?>
-                <tr>
+            <?php foreach ($articles as $key => $article) { ?>
+                <tr class=<?= $key % 2 === 1 ? 'darken' : '' ?>>
                     <td><?= $article['title'] ?></td>
                     <td><?= $article['views']?></td>
                     <td><?= $article['comments_count']?></td>
