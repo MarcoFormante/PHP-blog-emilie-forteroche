@@ -28,12 +28,17 @@ class ArticleManager extends AbstractEntityManager
      */
     public function getAllDashboardArticles(string|null $orderBy = null,string|null $orderValue = null) : array
     {
+        $param = in_array($orderBy, ['id','title','views','comments_count','date_creation']) ? $orderBy : 'id';
+        $paramValue = in_array($orderValue,["ASC","DESC"]) ? $orderValue : 'ASC';
+
+        
         
         $sql = "SELECT a.id, a.title, a.date_creation, views, COUNT(c.id) as comments_count
                 FROM article a 
                 LEFT JOIN comment c ON c.id_article = a.id
                 GROUP BY a.id
-                ORDER BY $orderBy $orderValue";
+                ORDER BY $param $paramValue"
+                ;
                 
                 
         $result = $this->db->query($sql);
